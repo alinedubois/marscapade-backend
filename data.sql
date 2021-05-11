@@ -87,6 +87,9 @@ INSERT INTO circuit_images (url, is_main, id_circuit) values ('https://imgur.com
 
 INSERT INTO activity_images (url, is_main, id_activity) values ('https://imgur.com/a/3boiSfg', true, 2), ('https://imgur.com/a/0nzQAhw', true, 1);
 
+UPDATE circuit SET image_1 = 'https://imgur.com/a/W0m6W2P' WHERE id = 2;
+
+
 SELECT *
 FROM circuit
 INNER JOIN circuit_images 
