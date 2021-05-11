@@ -36,6 +36,7 @@ router.post('/activities', (request, response) => {
 
 //get all activities
 router.get('/activities', (request, response) => {
+
     const sql = "SELECT * FROM activity";
     connection.promise().query(sql)
     .then((data) => {

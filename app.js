@@ -5,9 +5,13 @@ const app = express();
 // Using express.json() middleware
 app.use(express.json());
 
+const cors = require('cors');
+
 const activities = require('./routes/activities');
 const circuits = require('./routes/circuits');
 
+
+app.use(cors())
 
 app.use('/', activities);
 app.use('/', circuits);
