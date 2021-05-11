@@ -50,13 +50,13 @@ router.post('/circuits', (request, response) => {
     const { title, description, distance, duration, difflevel, image_1, image_2, image_3, image_4 } = request.body;
     const values = [title, description, distance, duration, difflevel, image_1, image_2, image_3, image_4];
 
-    const sql = "INSERT INTO activity (title, description, distance, duration, difflevel, image_1, image_2, image_3, image_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?))";
+    const sql = "INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1, image_2, image_3, image_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     connection.query(sql, values, (err, result) => {
         if(err) {
             response.status(500).send(`Error while inserting into database: ${err.stack}`);
         } else {
-            response.status(201).send('Activity added!')
+            response.status(201).send('Circuit added!')
         }
     })
 

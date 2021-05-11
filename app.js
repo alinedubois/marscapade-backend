@@ -10,7 +10,7 @@ const circuits = require('./routes/circuits');
 
 
 app.use('/', activities);
-//app.use('/', circuits);
+app.use('/', circuits);
 
 const port = process.env.PORT || 3000;
 
