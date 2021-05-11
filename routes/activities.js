@@ -68,4 +68,20 @@ router.get('/activities/:id', (request, response) => {
     });
 });
 
+//delete a circuit
+
+router.delete('/activities/:id', (request, response) => {
+
+    const activityId = parseInt(request.params.id);
+
+    connection.query('DELETE FROM `activity` WHERE id = ?', [activityId], (err, result) => {
+
+        if(err) {
+            response.status(500).send(`Error while deleting from database: ${err.stack}`);
+        } else {
+            response.status(200).send("Activity deleted!");
+        }
+    });
+});
+
 module.exports = router;

@@ -6,6 +6,8 @@ $ npm i express
 
 $ npm install dotenv
 
+$ npm install cors
+
 
 Les Activités end-point
 http://localhost:8080/activities
