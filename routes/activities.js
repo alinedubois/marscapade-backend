@@ -13,6 +13,27 @@ connection.connect((err) => {
 
 const router = require('express').Router();
 
+
+//add an activity
+
+router.post('/activities', (request, response) => {
+    console.log('request.body', request.body);
+
+    const { name, description, nbpax, location, image_1, image_2, image_3, image_4 } = request.body;
+    const values = [name, description, nbpax, location, image_1, image_2, image_3, image_4];
+
+    const sql = "INSERT INTO `activity` (name, description, nbpax, location, image_1, image_2, image_3, image_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+    connection.query(sql, values, (err, result) => {
+        if(err) {
+            response.status(500).send(`Error while inserting into database: ${err.stack}`);
+        } else {
+            response.status(201).send('Activity added!')
+        }
+    })
+
+});
+
 //get all activities
 router.get('/activities', (request, response) => {
     const sql = "SELECT * FROM activity";
