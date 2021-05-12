@@ -1,18 +1,14 @@
 // Setup environment variables / .env file
 require('dotenv').config(); //npm install dotenv
 //DB config
-const connection = require('../db-config');
+const { Pool } = require('pg');
+const connectionString = process.env.DATABASE_URL;
 
-connection.connect((err) => {
-    if(err){
-        console.error(`error connecting: ${err.stack}`);
-    } else {
-        console.log(`connected to database with threadid: ${connection.threadId}`);
-    }
+const connection = new Pool({
+    connectionString,
 });
 
 const router = require('express').Router();
-
 
 //add an activity
 
@@ -22,9 +18,13 @@ router.post('/activities', (request, response) => {
     const { name, description, nbpax, location, image_1, image_2, image_3, image_4, price } = request.body;
     const values = [name, description, nbpax, location, image_1, image_2, image_3, image_4, price];
     console.log(values);
-    const sql = "INSERT INTO `activity` (name, description, nbpax, location, image_1, image_2, image_3, image_4, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO activity (name, description, nbpax, location, image_1, image_2, image_3, image_4, price) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)";
 
-    connection.query(sql, values, (err, result) => {
+    const query = {
+        text: sql,
+        values: values,
+    }
+    connection.query(query, (err, result) => {
         if(err) {
             response.status(500).send(`Error while inserting into database: ${err.message}`);
         } else {
@@ -38,9 +38,9 @@ router.post('/activities', (request, response) => {
 router.get('/activities', (request, response) => {
 
     const sql = "SELECT * FROM activity";
-    connection.promise().query(sql)
+    connection.query(sql)
     .then((data) => {
-        response.status(200).json(data[0]);
+        response.status(200).json(data.rows);
     })
     .catch((err) => {
         response.status(500).send(`Error retrieving data from database: ${err.stack}`);
@@ -52,13 +52,17 @@ router.get('/activities/:id', (request, response) => {
 
     const activityId = parseInt(request.params.id);
 
-    const sql = "SELECT * FROM activity WHERE id = ?";
-    connection.promise().query(sql, activityId)
+    const sql = "SELECT * FROM activity WHERE id = $1";
+    const query = {
+        text: sql,
+        values: [activityId],
+    }
+    connection.query(query)
     .then((data) => {
-        const result = data[0];
+        const result = data;
 
-        if(result && result.length > 0){
-            response.status(200).json(result);
+        if(result && result.rows && result.rows.length > 0){
+            response.status(200).json(result.rows[0]);
           } else {
             response.status(404).send('Not Found!');
           }
@@ -76,7 +80,11 @@ router.delete('/activities/:id', (request, response) => {
 
     console.log('ça delete!', activityId);
 
-    connection.query('DELETE FROM `activity` WHERE id = ?', [activityId], (err, result) => {
+    const query = {
+        text: 'DELETE FROM activity WHERE id = $1',
+        values: [activityId],
+    }
+    connection.query(query, (err, result) => {
 
         if(err) {
             response.status(500).send(`Error while deleting from database: ${err.stack}`);
