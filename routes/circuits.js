@@ -62,13 +62,15 @@ router.post('/circuits', (request, response) => {
 
 })
 
-//delete an activity
+//delete an circuit
 
 router.delete('/circuits/:id', (request, response) => {
 
     const circuitId = parseInt(request.params.id);
 
-    connection.query('DELETE FROM `activity` WHERE id = ?', [circuitId], (err, result) => {
+    console.log('ça delete!', circuitId);
+
+    connection.query('DELETE FROM `circuit` WHERE id = ?', [circuitId], (err, result) => {
 
         if(err) {
             response.status(500).send(`Error while deleting from database: ${err.stack}`);

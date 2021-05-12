@@ -68,11 +68,13 @@ router.get('/activities/:id', (request, response) => {
     });
 });
 
-//delete a circuit
+//delete an activity
 
 router.delete('/activities/:id', (request, response) => {
 
     const activityId = parseInt(request.params.id);
+
+    console.log('ça delete!', activityId);
 
     connection.query('DELETE FROM `activity` WHERE id = ?', [activityId], (err, result) => {
 

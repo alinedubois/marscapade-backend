@@ -99,17 +99,11 @@ INSERT INTO activity(name, description, image_1, image_2, image_3, image_4, nbpa
 INSERT INTO activity(name, description, image_1, image_2, image_3, image_4, nbpax, location) VALUES ('Find the 7','Trouver les 7 rovers en marche et abandonnés disséminés sur la planète','https://upload.wikimedia.org/wikipedia/commons/a/a3/Rover1.jpg','https://www.numerama.com/wp-content/uploads/2021/01/curiosity-rover-mars.jpg','https://mars.nasa.gov/system/content_pages/main_images/382_viking-lander-PIA09703.jpg', 'https://www.cieletespace.fr/media/default/0001/15/Mars3_1000x700-5ac4.jpeg', 5, 'partout sur Mars');
 
 
-INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Mont Olympe', 'Le Mont Olympe voila voila', 8000, '2h00', 'easy', 'https://imgur.com/a/1uPSzAN');
-INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Mont Elysium', 'Le plus grand des Monts', 14000, '1h45', 'hard', 'https://albdoblog.files.wordpress.com/2019/04/mars__valles_marineris_by_grafik-d1yzdxv.jpg?w=705&h=435&crop=1');
-INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Noctis Labyrinthus', 'vous vous y perdrez', 2000, '2h30', 'medium', 'https://zupimages.net/viewer.php?id=21/19/isfu.jpg');
-INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Mawrth Vallis', 'la vallée du Mars et ça repart', 9500, '5h00', 'fatality', 'https://zupimages.net/up/21/19/id53.jpg');
-INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Dunes Fantômes', 'Bhou!', 5700, '3h00', 'easy', 'https://zupimages.net/viewer.php?id=21/19/qsyo.jpg');
-
-INSERT INTO circuit_images (url, is_main, id_circuit) values ('https://imgur.com/a/1uPSzAN', true, 1), ('', false, 1), ('https://imgur.com/a/W0m6W2P', true, 2), ('', false, 2);
-
-INSERT INTO activity_images (url, is_main, id_activity) values ('https://imgur.com/a/3boiSfg', true, 2), ('https://imgur.com/a/0nzQAhw', true, 1);
-
-UPDATE circuit SET image_1 = 'https://imgur.com/a/W0m6W2P' WHERE id = 2;
+INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Mont Olympe', 'Le Mont Olympe voila voila', 8000, '2h00', 'easy', 'https://zupimages.net/up/21/19/xe9x.png');
+INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Mont Elysium', 'Le plus grand des Monts', 14000, '1h45', 'hard', 'https://zupimages.net/up/21/19/5pz6.jpg');
+INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Noctis Labyrinthus', 'vous vous y perdrez', 2000, '2h30', 'medium', 'https://zupimages.net/up/21/19/ski5.jpg');
+INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Mawrth Vallis', 'la vallée du Mars et ça repart', 9500, '5h00', 'fatality', 'https://zupimages.net/up/21/19/9h5p.jpg');
+INSERT INTO `circuit` (title, description, distance, duration, difflevel, image_1) VALUES ('Dunes Fantômes', 'Bhou!', 5700, '3h00', 'easy', 'https://zupimages.net/up/21/19/g91n.jpg');
 
 
 SELECT *
