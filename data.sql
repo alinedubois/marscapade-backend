@@ -22,7 +22,7 @@ alter table circuit add image_4 varchar(250);
 CREATE TABLE `activity` (
 `id` INT NOT NULL AUTO_INCREMENT,
 `name` VARCHAR(100) NOT NULL,
-`description` VARCHAR(100) NOT NULL,
+`description` TEXT NULL,
 `price` DECIMAL NOT NULL,
 `image_1` VARCHAR(250) NULL,
 `image_2` VARCHAR(250) NULL,

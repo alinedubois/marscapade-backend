@@ -17,16 +17,16 @@ const router = require('express').Router();
 //add an activity
 
 router.post('/activities', (request, response) => {
-    console.log('request.body', request.body);
+    console.log(request.body);
 
-    const { name, description, nbpax, location, image_1, image_2, image_3, image_4 } = request.body;
-    const values = [name, description, nbpax, location, image_1, image_2, image_3, image_4];
-
-    const sql = "INSERT INTO `activity` (name, description, nbpax, location, image_1, image_2, image_3, image_4) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const { name, description, nbpax, location, image_1, image_2, image_3, image_4, price } = request.body;
+    const values = [name, description, nbpax, location, image_1, image_2, image_3, image_4, price];
+    console.log(values);
+    const sql = "INSERT INTO `activity` (name, description, nbpax, location, image_1, image_2, image_3, image_4, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     connection.query(sql, values, (err, result) => {
         if(err) {
-            response.status(500).send(`Error while inserting into database: ${err.stack}`);
+            response.status(500).send(`Error while inserting into database: ${err.message}`);
         } else {
             response.status(201).send('Activity added!')
         }
